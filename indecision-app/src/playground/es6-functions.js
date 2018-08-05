@@ -13,8 +13,12 @@ const cube = (x) => {
 // the more concise version can't be used ALL the time, but can be used for simple returns
 const cubed = (x) => x * x * x;
 
-console.log(cube(3))
-console.log(cubed(4))
+console.log(cube(3));
+console.log(cubed(4));
 
-const getFirstName = (name) => name.split(' ')[0]
-console.log(getFirstName('Todd Fleeman'))
+const getFirstName = (name) => name.split(" ")[0];
+console.log(getFirstName('Todd Fleeman'));
+
+function boob() {
+	document.getElementById('bob')
+}

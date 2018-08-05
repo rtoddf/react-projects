@@ -21,6 +21,10 @@ console.log(cube(3));
 console.log(cubed(4));
 
 var getFirstName = function getFirstName(name) {
-	return name.split(' ')[0];
+	return name.split(" ")[0];
 };
 console.log(getFirstName('Todd Fleeman'));
+
+function boob() {
+	document.getElementById('bob');
+}
