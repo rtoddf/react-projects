@@ -3,18 +3,24 @@
 console.log('app.js is running');
 
 // JSX - Javascript XML
-var template = React.createElement(
+var course = {
+	name: 'This is JSX from app.js',
+	subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.',
+	items: ['item 01', 'item 02']
+};
+
+var templateOne = React.createElement(
 	'div',
 	null,
 	React.createElement(
 		'h1',
 		null,
-		'This is JSX from app.js'
+		course.name
 	),
 	React.createElement(
 		'p',
 		null,
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.'
+		course.subtitle
 	),
 	React.createElement(
 		'ol',
@@ -22,15 +28,21 @@ var template = React.createElement(
 		React.createElement(
 			'li',
 			null,
-			'item one'
+			course.items[0]
 		),
 		React.createElement(
 			'li',
 			null,
-			'item two'
+			course.items[1]
 		)
 	)
 );
+
+var user = {
+	name: 'Larry Davis',
+	age: 54,
+	location: 'Atlanta'
+};
 
 var templateTwo = React.createElement(
 	'div',
@@ -38,21 +50,26 @@ var templateTwo = React.createElement(
 	React.createElement(
 		'h1',
 		null,
-		'Todd Fleeman'
+		'name: ',
+		user.name
 	),
 	React.createElement(
 		'p',
 		null,
-		'age: 51'
+		'age: ',
+		user.age
 	),
 	React.createElement(
 		'p',
 		null,
-		'Location: Atlanta'
+		'location: ',
+		user.location
 	)
 );
 
-var appRoot = document.getElementById('app');
+var appRoot01 = document.getElementById('example01');
+var appRoot02 = document.getElementById('example02');
 
 // ReactDOM.render(template, appRoot);
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(templateOne, appRoot01);
+ReactDOM.render(templateTwo, appRoot02);
