@@ -6,7 +6,7 @@ console.log('app.js is running');
 var course = {
 	name: 'This is JSX from app.js',
 	subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.',
-	items: ['item 01', 'item 02']
+	options: ['item 01', 'item 02']
 };
 
 var templateOne = React.createElement(
@@ -17,10 +17,15 @@ var templateOne = React.createElement(
 		null,
 		course.name
 	),
-	React.createElement(
+	course.subtitle && React.createElement(
 		'p',
 		null,
 		course.subtitle
+	),
+	React.createElement(
+		'p',
+		null,
+		course.options.length > 0 ? 'you have options' : 'you have no options'
 	),
 	React.createElement(
 		'ol',
@@ -28,12 +33,12 @@ var templateOne = React.createElement(
 		React.createElement(
 			'li',
 			null,
-			course.items[0]
+			course.options[0]
 		),
 		React.createElement(
 			'li',
 			null,
-			course.items[1]
+			course.options[1]
 		)
 	)
 );
@@ -41,8 +46,17 @@ var templateOne = React.createElement(
 var user = {
 	name: 'Larry Davis',
 	age: 54,
-	location: 'Atlanta'
+	location: 'Dekalb'
 };
+
+function getLocation(location) {
+	return location ? React.createElement(
+		'p',
+		null,
+		'Location: ',
+		location
+	) : undefined;
+}
 
 var templateTwo = React.createElement(
 	'div',
@@ -51,20 +65,15 @@ var templateTwo = React.createElement(
 		'h1',
 		null,
 		'name: ',
-		user.name
+		user.name ? user.name : 'anonymous'
 	),
-	React.createElement(
+	user.age && user.age >= 18 && React.createElement(
 		'p',
 		null,
 		'age: ',
 		user.age
 	),
-	React.createElement(
-		'p',
-		null,
-		'location: ',
-		user.location
-	)
+	getLocation(user.location)
 );
 
 var appRoot01 = document.getElementById('example01');

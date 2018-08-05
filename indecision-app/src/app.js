@@ -4,16 +4,17 @@ console.log('app.js is running');
 var course = {
 	name: 'This is JSX from app.js',
 	subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.',
-	items: ['item 01', 'item 02']
+	options: ['item 01', 'item 02']
 }
 
 var templateOne = (
 	<div>
 		<h1>{course.name}</h1>
-		<p>{course.subtitle}</p>
+		{course.subtitle && <p>{course.subtitle}</p>}
+		<p>{course.options.length > 0 ? 'you have options' : 'you have no options'}</p>
 		<ol>
-			<li>{course.items[0]}</li>
-			<li>{course.items[1]}</li>
+			<li>{course.options[0]}</li>
+			<li>{course.options[1]}</li>
 		</ol>
 	</div>
 );
@@ -21,14 +22,19 @@ var templateOne = (
 var user = {
 	name: 'Larry Davis',
 	age: 54,
-	location: 'Atlanta'
+	location: 'Dekalb'
+}
+
+function getLocation(location) {
+	return location ? <p>Location: {location}</p> : undefined;
 }
 
 var templateTwo = (
 	<div>
-		<h1>name: {user.name}</h1>
-		<p>age: {user.age}</p>
-		<p>location: {user.location}</p>
+		<h1>name: {user.name ? user.name : 'anonymous'}</h1>
+		{/*why &&*/}
+		{(user.age && user.age >= 18) && <p>age: {user.age}</p>}
+		{getLocation(user.location)}
 	</div>
 );
 
@@ -37,4 +43,9 @@ var appRoot02 = document.getElementById('example02');
 
 // ReactDOM.render(template, appRoot);
 ReactDOM.render(templateOne, appRoot01);
-ReactDOM.render(templateTwo, appRoot02)
+ReactDOM.render(templateTwo, appRoot02);
+
+
+
+
+
