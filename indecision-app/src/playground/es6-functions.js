@@ -2,9 +2,14 @@ function square(x) {
 	return x * x;
 }
 
+const squareArrow = (x) => {
+	return x * x;
+}
+
+console.log("squareArrow: ", squareArrow(9));
 console.log(square(3));
 
-// arrow functions are anonumous - they can't be named
+// arrow functions are always anonumous - they can't be named
 // they have to be assigned to const or let
 const cube = (x) => {
 	return x * x * x;
