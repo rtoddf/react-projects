@@ -36,14 +36,40 @@ const templateTwo = (
 	</div>
 );
 
-const appRoot01 = document.getElementById('example01');
-const appRoot02 = document.getElementById('example02');
+const appRoot01 = document.getElementById("example01");
+const appRoot02 = document.getElementById("example02");
+const appRoot03 = document.getElementById("example03");
 
 // ReactDOM.render(template, appRoot);
-ReactDOM.render(templateOne, appRoot01);
-ReactDOM.render(templateTwo, appRoot02);
+// ReactDOM.render(templateOne, appRoot01);
+// ReactDOM.render(templateTwo, appRoot02);
 
+let count = 0;
+const addOne = () => {
+	count++;
+	renderCounterApp();
+}
+const minusOne = () => {
+	count--;
+	renderCounterApp();
+}
 
+const reset = () => {
+	count = 0;
+	renderCounterApp();
+}
 
+const renderCounterApp = () => {
+	const templateThree = (
+		<div>
+			<h1>Count: {count}</h1>
+			<button onClick={addOne}>+1</button>
+			<button onClick={minusOne}>-1</button>
+			<button onClick={reset}>Reset</button>
+		</div>
+	);
 
+	ReactDOM.render(templateThree, appRoot03);
+}
 
+renderCounterApp();
