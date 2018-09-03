@@ -21,6 +21,12 @@ const removeAll = () => {
 	renderTemplateOne();
 }
 
+const makeDecision = () => {
+	const randomNum = Math.floor(Math.random() * course.options.length);
+	const option = course.options[randomNum];
+	alert(option);
+}
+
 const renderTemplateOne = () => {
 	const templateOne = (
 		<div>
@@ -34,6 +40,7 @@ const renderTemplateOne = () => {
 				}
 			</ol>
 	
+			<button disabled={course.options.length === 0} onClick={makeDecision}>What should I do?</button>
 			<button onClick={removeAll}>remove all options</button>
 
 			<form onSubmit={formSumbitted}>

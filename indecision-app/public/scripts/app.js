@@ -23,6 +23,12 @@ var removeAll = function removeAll() {
 	renderTemplateOne();
 };
 
+var makeDecision = function makeDecision() {
+	var randomNum = Math.floor(Math.random() * course.options.length);
+	var option = course.options[randomNum];
+	alert(option);
+};
+
 var renderTemplateOne = function renderTemplateOne() {
 	var templateOne = React.createElement(
 		'div',
@@ -52,6 +58,11 @@ var renderTemplateOne = function renderTemplateOne() {
 					course
 				);
 			})
+		),
+		React.createElement(
+			'button',
+			{ disabled: course.options.length === 0, onClick: makeDecision },
+			'What should I do?'
 		),
 		React.createElement(
 			'button',
