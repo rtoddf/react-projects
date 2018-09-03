@@ -12,12 +12,6 @@ const formSumbitted = (e) => {
 	if(option) {
 		course.options.push(option);
 		e.target.elements.option.value = "";
-
-		(course.options).forEach(opt => {
-			console.log("opt: ", opt);
-			// getElementById("ol")
-		});
-
 		renderTemplateOne();
 	}
 }
@@ -33,10 +27,13 @@ const renderTemplateOne = () => {
 			<h1>{course.name}</h1>
 			{course.subtitle && <p>{course.subtitle}</p>}
 			<p>{course.options.length > 0 ? 'you have options' : 'you have no options'}</p>
-			<p>{course.options.length}</p>
+			{/* <p>{course.options.length}</p> */}
 			<ol>
-				<li>{course.options[0]}</li>
-				<li>{course.options[1]}</li>
+				{
+					course.options.map((course) => {
+						return <li key={course}>{course}</li>
+					})
+				}
 			</ol>
 	
 			<button onClick={removeAll}>remove all options</button>

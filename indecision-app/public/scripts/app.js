@@ -14,12 +14,6 @@ var formSumbitted = function formSumbitted(e) {
 	if (option) {
 		course.options.push(option);
 		e.target.elements.option.value = "";
-
-		course.options.forEach(function (opt) {
-			console.log("opt: ", opt);
-			// getElementById("ol")
-		});
-
 		renderTemplateOne();
 	}
 };
@@ -49,23 +43,15 @@ var renderTemplateOne = function renderTemplateOne() {
 			course.options.length > 0 ? 'you have options' : 'you have no options'
 		),
 		React.createElement(
-			'p',
-			null,
-			course.options.length
-		),
-		React.createElement(
 			'ol',
 			null,
-			React.createElement(
-				'li',
-				null,
-				course.options[0]
-			),
-			React.createElement(
-				'li',
-				null,
-				course.options[1]
-			)
+			course.options.map(function (course) {
+				return React.createElement(
+					'li',
+					{ key: course },
+					course
+				);
+			})
 		),
 		React.createElement(
 			'button',
