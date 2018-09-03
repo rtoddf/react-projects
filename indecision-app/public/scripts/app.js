@@ -4,42 +4,93 @@
 var course = {
 	name: 'This is JSX from app.js',
 	subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.',
-	options: ['item 01', 'item 02']
+	options: []
 };
 
-var templateOne = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		course.name
-	),
-	course.subtitle && React.createElement(
-		'p',
-		null,
-		course.subtitle
-	),
-	React.createElement(
-		'p',
-		null,
-		course.options.length > 0 ? 'you have options' : 'you have no options'
-	),
-	React.createElement(
-		'ol',
+var formSumbitted = function formSumbitted(e) {
+	e.preventDefault();
+
+	var option = e.target.elements.option.value;
+	if (option) {
+		course.options.push(option);
+		e.target.elements.option.value = "";
+
+		course.options.forEach(function (opt) {
+			console.log("opt: ", opt);
+			// getElementById("ol")
+		});
+
+		renderTemplateOne();
+	}
+};
+
+var removeAll = function removeAll() {
+	course.options = [];
+	renderTemplateOne();
+};
+
+var renderTemplateOne = function renderTemplateOne() {
+	var templateOne = React.createElement(
+		'div',
 		null,
 		React.createElement(
-			'li',
+			'h1',
 			null,
-			course.options[0]
+			course.name
+		),
+		course.subtitle && React.createElement(
+			'p',
+			null,
+			course.subtitle
 		),
 		React.createElement(
-			'li',
+			'p',
 			null,
-			course.options[1]
+			course.options.length > 0 ? 'you have options' : 'you have no options'
+		),
+		React.createElement(
+			'p',
+			null,
+			course.options.length
+		),
+		React.createElement(
+			'ol',
+			null,
+			React.createElement(
+				'li',
+				null,
+				course.options[0]
+			),
+			React.createElement(
+				'li',
+				null,
+				course.options[1]
+			)
+		),
+		React.createElement(
+			'button',
+			{ onClick: removeAll },
+			'remove all options'
+		),
+		React.createElement(
+			'form',
+			{ onSubmit: formSumbitted },
+			React.createElement('input', { type: 'text', name: 'option' }),
+			React.createElement(
+				'button',
+				null,
+				'Submit'
+			)
 		)
-	)
-);
+	);
+
+	var appRoot01 = document.getElementById("example01");
+	ReactDOM.render(templateOne, appRoot01);
+};
+
+renderTemplateOne();
+
+///////////////////////////
 
 var user = {
 	name: 'Larry Davis',
@@ -74,57 +125,8 @@ var templateTwo = React.createElement(
 	getLocation(user.location)
 );
 
-var appRoot01 = document.getElementById("example01");
 var appRoot02 = document.getElementById("example02");
 var appRoot03 = document.getElementById("example03");
 
 // ReactDOM.render(template, appRoot);
-// ReactDOM.render(templateOne, appRoot01);
 // ReactDOM.render(templateTwo, appRoot02);
-
-var count = 0;
-var addOne = function addOne() {
-	count++;
-	renderCounterApp();
-};
-var minusOne = function minusOne() {
-	count--;
-	renderCounterApp();
-};
-
-var reset = function reset() {
-	count = 0;
-	renderCounterApp();
-};
-
-var renderCounterApp = function renderCounterApp() {
-	var templateThree = React.createElement(
-		'div',
-		null,
-		React.createElement(
-			'h1',
-			null,
-			'Count: ',
-			count
-		),
-		React.createElement(
-			'button',
-			{ onClick: addOne },
-			'+1'
-		),
-		React.createElement(
-			'button',
-			{ onClick: minusOne },
-			'-1'
-		),
-		React.createElement(
-			'button',
-			{ onClick: reset },
-			'Reset'
-		)
-	);
-
-	ReactDOM.render(templateThree, appRoot03);
-};
-
-renderCounterApp();

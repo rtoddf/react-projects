@@ -2,20 +2,61 @@
 const course = {
 	name: 'This is JSX from app.js',
 	subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.',
-	options: ['item 01', 'item 02']
+	options: []
 }
 
-const templateOne = (
-	<div>
-		<h1>{course.name}</h1>
-		{course.subtitle && <p>{course.subtitle}</p>}
-		<p>{course.options.length > 0 ? 'you have options' : 'you have no options'}</p>
-		<ol>
-			<li>{course.options[0]}</li>
-			<li>{course.options[1]}</li>
-		</ol>
-	</div>
-);
+const formSumbitted = (e) => {
+	e.preventDefault();
+
+	const option = e.target.elements.option.value;
+	if(option) {
+		course.options.push(option);
+		e.target.elements.option.value = "";
+
+		(course.options).forEach(opt => {
+			console.log("opt: ", opt);
+			// getElementById("ol")
+		});
+
+		renderTemplateOne();
+	}
+}
+
+const removeAll = () => {
+	course.options = [];
+	renderTemplateOne();
+}
+
+const renderTemplateOne = () => {
+	const templateOne = (
+		<div>
+			<h1>{course.name}</h1>
+			{course.subtitle && <p>{course.subtitle}</p>}
+			<p>{course.options.length > 0 ? 'you have options' : 'you have no options'}</p>
+			<p>{course.options.length}</p>
+			<ol>
+				<li>{course.options[0]}</li>
+				<li>{course.options[1]}</li>
+			</ol>
+	
+			<button onClick={removeAll}>remove all options</button>
+
+			<form onSubmit={formSumbitted}>
+				<input type="text" name="option" />
+				<button>Submit</button>
+			</form>
+	
+		</div>
+	);
+
+	const appRoot01 = document.getElementById("example01");
+	ReactDOM.render(templateOne, appRoot01);
+}
+
+renderTemplateOne();
+
+
+///////////////////////////
 
 const user = {
 	name: 'Larry Davis',
@@ -36,40 +77,9 @@ const templateTwo = (
 	</div>
 );
 
-const appRoot01 = document.getElementById("example01");
+
 const appRoot02 = document.getElementById("example02");
 const appRoot03 = document.getElementById("example03");
 
 // ReactDOM.render(template, appRoot);
-// ReactDOM.render(templateOne, appRoot01);
 // ReactDOM.render(templateTwo, appRoot02);
-
-let count = 0;
-const addOne = () => {
-	count++;
-	renderCounterApp();
-}
-const minusOne = () => {
-	count--;
-	renderCounterApp();
-}
-
-const reset = () => {
-	count = 0;
-	renderCounterApp();
-}
-
-const renderCounterApp = () => {
-	const templateThree = (
-		<div>
-			<h1>Count: {count}</h1>
-			<button onClick={addOne}>+1</button>
-			<button onClick={minusOne}>-1</button>
-			<button onClick={reset}>Reset</button>
-		</div>
-	);
-
-	ReactDOM.render(templateThree, appRoot03);
-}
-
-renderCounterApp();
