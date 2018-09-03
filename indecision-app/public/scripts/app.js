@@ -45,10 +45,10 @@ var renderTemplateOne = function renderTemplateOne() {
 		React.createElement(
 			'ol',
 			null,
-			course.options.map(function (course) {
+			course.options.map(function (course, i) {
 				return React.createElement(
 					'li',
-					{ key: course },
+					{ key: i },
 					course
 				);
 			})

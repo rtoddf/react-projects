@@ -30,9 +30,7 @@ const renderTemplateOne = () => {
 			{/* <p>{course.options.length}</p> */}
 			<ol>
 				{
-					course.options.map((course) => {
-						return <li key={course}>{course}</li>
-					})
+					course.options.map((course, i) => <li key={i}>{course}</li>)
 				}
 			</ol>
 	
