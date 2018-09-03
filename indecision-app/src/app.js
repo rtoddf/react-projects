@@ -1,5 +1,5 @@
 // JSX - Javascript XML
-const course = {
+const app = {
 	name: 'This is JSX from app.js',
 	subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor imperdiet leo at iaculis. Duis pharetra blandit nisi, eget varius mauris auctor ac.',
 	options: []
@@ -10,37 +10,37 @@ const formSumbitted = (e) => {
 
 	const option = e.target.elements.option.value;
 	if(option) {
-		course.options.push(option);
+		app.options.push(option);
 		e.target.elements.option.value = "";
 		renderTemplateOne();
 	}
 }
 
 const removeAll = () => {
-	course.options = [];
+	app.options = [];
 	renderTemplateOne();
 }
 
 const makeDecision = () => {
-	const randomNum = Math.floor(Math.random() * course.options.length);
-	const option = course.options[randomNum];
+	const randomNum = Math.floor(Math.random() * app.options.length);
+	const option = app.options[randomNum];
 	alert(option);
 }
 
 const renderTemplateOne = () => {
 	const templateOne = (
 		<div>
-			<h1>{course.name}</h1>
-			{course.subtitle && <p>{course.subtitle}</p>}
-			<p>{course.options.length > 0 ? 'you have options' : 'you have no options'}</p>
-			{/* <p>{course.options.length}</p> */}
+			<h1>{app.name}</h1>
+			{app.subtitle && <p>{app.subtitle}</p>}
+			<p>{app.options.length > 0 ? 'you have options' : 'you have no options'}</p>
+			{/* <p>{app.options.length}</p> */}
 			<ol>
 				{
-					course.options.map((course, i) => <li key={i}>{course}</li>)
+					app.options.map((course, i) => <li key={i}>{course}</li>)
 				}
 			</ol>
 	
-			<button disabled={course.options.length === 0} onClick={makeDecision}>What should I do?</button>
+			<button disabled={app.options.length === 0} onClick={makeDecision}>What should I do?</button>
 			<button onClick={removeAll}>remove all options</button>
 
 			<form onSubmit={formSumbitted}>
